@@ -8,11 +8,17 @@ function Navigation({userObj}) {
         <li>
           <Link to={'/'}>Home</Link>
         </li>
-        <>
+
          <li>
-        <Link to={'/profile'}>{userObj.displayName} Profile</Link> 
+        <Link to={'/profile'}>
+          {userObj.displayName} 
+          Profile
+          {userObj.photoURL && (
+            <img src={userObj.photoURL} width="50" height="50" />
+          )}
+          </Link> 
         </li>
-        </>
+    
        
       </ul>
     </nav>
