@@ -1,0 +1,69 @@
+/* Nwitter Factory */
+.factoryForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  .factoryInput__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+
+    .factoryInput__input {
+      flex: auto;
+      height: 40px;
+      border: 1px solid #04aaff;
+      padding: 0px 20px;
+      color: white;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 12px;
+    }
+    
+    .factoryInput__arrow {
+      position: absolute;
+      right: 0;
+      height: 40px;
+      width: 40px;
+      border-radius: 20px;
+      background-color: #04aaff;
+      padding: 10px 0px;
+      text-align: center;
+      color: white;
+    }
+  }
+  .factoryInput__label {
+    color: #04aaff;
+    cursor: pointer;
+    span {
+      margin-right: 10px;
+      font-size: 12px;
+    }
+  }
+  .factoryForm__attachment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    img {
+      height: 80px;
+      width: 80px;
+      border-radius: 40px;
+    }
+    .factoryForm__clear {
+      color: #04aaff;
+      cursor: pointer;
+      text-align: center;
+      span {
+        margin-right: 10px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+

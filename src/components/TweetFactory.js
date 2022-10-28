@@ -3,6 +3,9 @@ import {db,storage} from 'fbase'
 import {collection, addDoc, query, getDocs,onSnapshot, orderBy  } from "firebase/firestore";
 import { v4 as uuidv4 } from 'uuid'; //js6에서 쓰이는 거
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
+import { faPlus,faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import "styles/tweetfactory.scss";
 
 function TweetFactory({userObj}) {
   const [tweet, setTweet] = useState("");
@@ -57,15 +60,25 @@ function TweetFactory({userObj}) {
  
   return (
     
-    <form onSubmit={onSubmit}>
-      <input type="text" placeholder="what's on your mind" 
-      value={tweet} onChange={onChange} maxLength={120} />
-       <input type="file" accept='image/*' onChange={onFileChange}/>
-       <input type="submit" value="Tweet" />
+    <form onSubmit={onSubmit} className="factoryForm">
+      <div className="factoryInput__container">
+        <input type="text" placeholder="what's on your mind" 
+        value={tweet} onChange={onChange} maxLength={120} className="factoryInput__input" /> 
+         
+         <input type="submit" value="&rarr;" className="factoryInput__arrow" />
+      </div>
+       <label htmlFor="attach-file" className="factoryInput__label">
+        <span>Add photos</span>
+        <FontAwesomeIcon icon={faPlus} />
+       </label>
+       <input type="file" accept='image/*' onChange={onFileChange} id="attach-file" style={{opacity: 0,}}/>
        {attachment && 
-       <div>
-         <img src={attachment} width="50" height="50" />
-         <button onClick={onClearAttachment}>Clear</button>
+       <div className="factoryForm__attachment">
+         <img src={attachment} style={{backgroundImage:attachment,}}/>
+         <div className="factoryForm__clear" onClick={onClearAttachment}>
+          <span>Remove</span>
+          <FontAwesomeIcon icon={faXmark} />
+          </div>
        </div>
         }
     </form>

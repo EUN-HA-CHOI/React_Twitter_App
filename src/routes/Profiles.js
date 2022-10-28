@@ -6,6 +6,9 @@ import Tweet from 'components/Tweet';
 import { updateProfile } from "firebase/auth";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { v4 as uuidv4 } from 'uuid';
+import "styles/profile.scss"
+import { faPlus} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Profiles({userObj}) {
   const [tweets, setTweets] = useState([]);
@@ -77,12 +80,17 @@ function Profiles({userObj}) {
   const onClearAttachment = () => setAttachment("");
 
   return (
-    <>
-    <form onSubmit={onSubmit} >
-      <input type="text" placeholder="Display name" onChange={onChange} value={newDisplayName}/>
-      <input type="file" accept='image/*' onChange={onFileChange} />
+    <div className="container">
+    <form onSubmit={onSubmit} className="profileForm" >
+      <input type="text" placeholder="Display name" onChange={onChange} value={newDisplayName}
+      autoFocus className="formInput"/>
+     <label for="attach-file" className="profileForm__label">
+        <span>Add photos</span>
+        <FontAwesomeIcon icon={faPlus} />
+       </label>
+       <input type="file" accept='image/*' onChange={onFileChange} id="attach-file" style={{opacity: 0,}}/>
       
-      <input type="submit" value="Update Profile" />
+      <input type="submit" value="Update Profile" className='formBtn' style={{marginTop:10}} />
       {attachment && 
         <div>
           <img src={attachment} width="50" height='50' />
@@ -90,7 +98,7 @@ function Profiles({userObj}) {
         </div>
       }
     </form>
-    <button onClick={onLogOutClick}>Log Out</button>
+    <button className="formBtn cancelBtn logOut" onClick={onLogOutClick}>Log Out</button>
     <div>
       {tweets.map (tweet => (
         <Tweet 
@@ -100,7 +108,7 @@ function Profiles({userObj}) {
         />
       ))}
     </div>
-    </>
+    </div>
   )
 }
 

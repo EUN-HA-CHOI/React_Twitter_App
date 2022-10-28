@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import AppRouter from 'Router';
 import { authService } from 'fbase';
 import { onAuthStateChanged } from "firebase/auth";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTwitter,faGithub,faGoogle } from '@fortawesome/free-brands-svg-icons'
+library.add(faTwitter,faGithub,faGoogle)
 
 function App() {
   const [init, setInit] = useState(false);
@@ -28,7 +31,7 @@ function App() {
 
   return ( //init이 true면 isLoggedIn에 정보 전달 
     <>
-    {init ? <AppRouter isLoggedIn = {isLoggedIn} userObj={userObj} /> : "initializing..."}
+    {init ? <AppRouter isLoggedIn = {Boolean(userObj)} userObj={userObj} /> : "initializing..."}
     <footer>&copy; {new Date().getFullYear()} Twitter app</footer>
     </>
   );

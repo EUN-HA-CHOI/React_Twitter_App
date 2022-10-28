@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {db,storage} from 'fbase';
 import { doc, deleteDoc,updateDoc } from "firebase/firestore";
 import { ref, deleteObject } from "firebase/storage";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import "styles/tweet.scss";
+
 
 function Tweet({tweetObj,isOwner}) { //구조분해할당으로 텍스트 값만 나오게 함
  const [editing, setEditing] = useState(false);
@@ -48,14 +51,14 @@ useEffect(() => {
 },[]) 
 
   return (
-    <div>
+    <div className="tweet">
       {editing ? ( //수정화면 , true 로 바뀌어 아래의 코드가 보임
         <>
-         <form onSubmit={onSubmit}>
-          <input onChange={onChange} value={newTweet} required  />
-          <input type="submit" value="update Tweet"/>
+         <form onSubmit={onSubmit} className="container tweetEdit">
+          <input onChange={onChange} value={newTweet} required className="formInput" />
+          <input type="submit" value="update Tweet" className="formBtn"/>
          </form>
-         <button onClick={toggleEditing}>Cancle</button>
+         <button onClick={toggleEditing} className="formBtn cancelBtn">Cancle</button>
         </>
       ) : (
        <>
@@ -65,10 +68,14 @@ useEffect(() => {
         )}
         <span>{nowDate}</span>
        {isOwner && (
-        <>
-         <button onClick={onDeleteClick}>Delete Tweet</button>
-         <button onClick={toggleEditing}>Edit Tweet</button>
-        </>
+        <div className="tweet__actions">
+          <span onClick={onDeleteClick}>
+          <FontAwesomeIcon icon="fa-solid fa-trash" />
+          </span>
+          <span onClick={toggleEditing}>
+          <FontAwesomeIcon icon="fa-solid fa-pencil" />
+          </span>
+        </div>
        )}
        </>
       )}

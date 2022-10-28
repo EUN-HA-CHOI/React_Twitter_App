@@ -1,0 +1,24 @@
+/* Profile Page */
+.profileForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  padding-bottom: 30px;
+  /*margin-bottom: 50px;*/
+}
+
+
+.logOut {
+  margin-top: 50px;
+}
+
+.profileForm__label {
+  color: #04aaff;
+  cursor: pointer;
+  margin-left: 125px;
+  span {
+    margin-right: 10px;
+    font-size: 12px;
+  }
+}

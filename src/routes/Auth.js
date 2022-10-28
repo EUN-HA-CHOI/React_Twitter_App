@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import {authService} from 'fbase';
-
 import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import AuthForm from 'components/AuthForm';
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import "styles/Auth.scss";
 
 function Auth() {
- 
   const onSocialClick = (e) => {
     //console.log(e.target.name);
     const {target: {name}} = e;  //e 객체에서 클릭한 타겟을 가져옴
@@ -22,11 +20,17 @@ function Auth() {
     //로그아웃 하려면 firebase 에서 계정삭제 또는 개발자 모드에 애플리케이션의 로컬 스토리지 값 삭제하면 로그아웃됨
   }
   return (
-    <div>
+    <div className='authContainer'>
+      <FontAwesomeIcon icon="fa-brands fa-twitter" 
+       color={"#04AAFF"} size="3x" style={{marginBottom:30}}/>
       <AuthForm />
-       <div>
-        <button onClick={onSocialClick} name="google">Continue with Google</button>
-        <button onClick={onSocialClick} name="github">Continue with Github</button>
+       <div className='authBtns'>
+        <button onClick={onSocialClick} name="google" className='authBtn'>
+          Continue with Google<FontAwesomeIcon icon="fa-brands fa-google" />
+          </button>
+        <button onClick={onSocialClick} name="github" className='authBtn'>
+          Continue with Github<FontAwesomeIcon icon="fa-brands fa-github" />
+          </button>
        </div>
     </div>
    
